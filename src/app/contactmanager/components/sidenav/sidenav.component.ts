@@ -17,6 +17,9 @@ const SMALL_WIDTH_BREAKPOINT = 720;
 export class SidenavComponent implements OnInit {
   isScreenSmall!: boolean;
   users!: Observable<User[]>;
+  isDarkTheme: boolean = false;
+  direction: string = 'ltr';
+
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -26,6 +29,14 @@ export class SidenavComponent implements OnInit {
     @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
+  toggleTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+  }
+
+  toggleDir() {
+    this.direction = this.direction == 'lrt' ? 'rtl' : 'ltr' ;
+
+  }
   ngOnInit(): void {
     this.breakpointObserver
     .observe([ `(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`])
@@ -34,10 +45,7 @@ export class SidenavComponent implements OnInit {
     });
     this.users = this.userService.users;
     this.userService.loadAll();
-
-    this.users.subscribe(data => {
-      if (data.length > 0) this.router.navigate(['/contactmanager', data[0].id]);
-    });
+ 
 
     this.router.events.subscribe(() => {
       if (this.isScreenSmall) {
