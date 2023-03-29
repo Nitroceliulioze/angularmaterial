@@ -18,7 +18,7 @@ export class SidenavComponent implements OnInit {
   isScreenSmall!: boolean;
   users!: Observable<User[]>;
   isDarkTheme: boolean = false;
-  direction: string = 'ltr';
+  dir: string = 'ltr';
 
 
   constructor(
@@ -34,7 +34,7 @@ export class SidenavComponent implements OnInit {
   }
 
   toggleDir() {
-    this.direction = this.direction == 'lrt' ? 'rtl' : 'ltr' ;
+    this.dir = this.dir == 'ltr' ? 'rtl' : 'ltr' ;
 
   }
   ngOnInit(): void {
