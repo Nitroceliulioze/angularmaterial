@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Direction } from '@angular/cdk/bidi';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -18,7 +19,7 @@ export class SidenavComponent implements OnInit {
   isScreenSmall!: boolean;
   users!: Observable<User[]>;
   isDarkTheme: boolean = false;
-  dir: string = 'ltr';
+  dir: Direction = 'ltr';
 
 
   constructor(
